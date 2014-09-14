@@ -1,10 +1,13 @@
 package android.mccreightm.crystal_ball;
 
 import android.app.Activity;
+import android.gesture.Prediction;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import static android.gesture.Prediction.*;
 
 
 public class Crystal_ball extends Activity {
@@ -16,7 +19,7 @@ public class Crystal_ball extends Activity {
         setContentView(R.layout.activity_crystal_ball);
 
         answerText = (TextView) findViewById(R.id.answerText);
-        answerText.setText("Ana is Lame");
+        answerText.setText(Predictions.get().getPrediction());
     }
 
 }
