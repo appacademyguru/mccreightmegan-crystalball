@@ -6,4 +6,11 @@ public class Predictions {
     private Predictions() {
 
     }
+
+    public static Predictions get() {
+        if(predictions == null){
+            predictions = new Predictions();
+        }
+        return predictions;
+    }
 }
