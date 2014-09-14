@@ -1,10 +1,13 @@
 
 public class Predictions {
 
-    public static Predictions predictions;
+    private static Predictions predictions;
+    private String[] answers;
 
     private Predictions() {
-
+        answers = new String[]{
+                "Your wishes will come true"
+        };
     }
 
     public static Predictions get() {
