@@ -1,5 +1,6 @@
 package android.mccreightm.crystal_ball;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
@@ -57,6 +58,9 @@ public class Crystal_ball extends Activity {
 
         answerText = (TextView) findViewById(R.id.answerText);
         answerText.setText(Predictions.get().getPrediction());
+
+        ActionBar actionBar = getActionBar();
+        actionBar.hide();
     }
 
     @Override
