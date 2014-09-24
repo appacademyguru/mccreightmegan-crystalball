@@ -1,5 +1,9 @@
 package android.mccreightm.crystal_ball;
 
+import android.media.MediaPlayer;
+
+import java.util.Random;
+
 public class Predictions {
 
     private static Predictions predictions;
@@ -8,7 +12,10 @@ public class Predictions {
     private Predictions() {
         answers = new String[]{
                 "Your wishes will come true",
-                "Your wishes will NEVER come true"
+                "Your wishes will NEVER come true",
+                "The future is uncertain",
+                "You are going to die",
+                "Ana is lame"
         };
     }
 
@@ -20,6 +27,8 @@ public class Predictions {
     }
 
     public String getPrediction(){
-        return answers[0];
+        Random rand = new Random();
+        int n = rand.nextInt(6);
+        return answers[n];
     }
 }
