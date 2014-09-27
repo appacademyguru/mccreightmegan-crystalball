@@ -12,10 +12,13 @@ public class Predictions {
     private Predictions() {
         answers = new String[]{
                 "Your wishes will come true",
-                "Your wishes will NEVER come true",
+                "Chellie is the best",
                 "The future is uncertain",
                 "You are going to die",
-                "Ana is lame"
+                "Ana is lame",
+                "No",
+                "Yes",
+                "Why are you asking a cookie?"
         };
     }
 
@@ -28,7 +31,7 @@ public class Predictions {
 
     public String getPrediction(){
         Random rand = new Random();
-        int n = rand.nextInt(6);
+        int n = rand.nextInt(8) + 1;
         return answers[n];
     }
 }

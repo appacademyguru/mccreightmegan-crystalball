@@ -5,10 +5,11 @@
     tools:context=".Crystal_ball">
 
     <ImageView
+        android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ball01"
-        android:background="#000"
+        android:src="@drawable/fortunecookie1"
+        android:background="#07060B"
         />
 
     <TextView
@@ -16,8 +17,15 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_centerInParent="true"
-        android:textColor="#FFFFFF"
-        android:gravity="center"
-        android:textSize="80sp"
+        android:layout_alignParentRight="false"
+        android:textColor="#000"
+        android:gravity="center_vertical"
+        android:textSize="30sp"
         />
+
+        <!--android:shadowColor="#"-->
+        <!--android:shadowRadius="2"-->
+        <!--android:shadowDx="3"-->
+        <!--android:shadowDy="3"-->
+
 </RelativeLayout>

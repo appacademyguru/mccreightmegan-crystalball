@@ -12,19 +12,23 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.FloatMath;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class Crystal_ball extends Activity {
     private TextView answerText;
-
+    private ImageView background;
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private float acceleration;
     private float currentAcceleration;
     private float previousAcceleration;
 
+    long previousTime;
+    long currentTime;
+    long delay;
 
     private final SensorEventListener sensorListener = new SensorEventListener() {
         @Override
@@ -37,15 +41,21 @@ public class Crystal_ball extends Activity {
             float delta = currentAcceleration - previousAcceleration;
             acceleration = acceleration * 0.9f + delta;
 
-            if(acceleration > 12){
-                MediaPlayer mediaPlayer = MediaPlayer.create(getBaseContext(), R.drawable.crystal_ball);
+            previousTime = currentTime;
+            currentTime = System.currentTimeMillis();
+
+            long elapsed = currentTime - previousTime;
+            delay += elapsed;
+
+            if(acceleration > 12 && delay >= 3000){
+                MediaPlayer mediaPlayer = MediaPlayer.create(getBaseContext(), R.drawable.crunch);
                 mediaPlayer.start();
                 answerText = (TextView) findViewById(R.id.answerText);
                 answerText.setText(Predictions.get().getPrediction());
-                answerText.startAnimation(AnimationUtils.loadAnimation(Crystal_ball.this, android.R.anim.fade_in));
-//                Toast toast = Toast.makeText(getApplication(), "Device has shaken", Toast.LENGTH_SHORT);
-//                toast.show();
-
+                answerText.startAnimation(AnimationUtils.makeInAnimation(Crystal_ball.this, true));
+                delay = 0;
+                background = (ImageView) findViewById(R.id.background);
+                background.setImageResource(R.drawable.fortunecookie3);
             }
         }
 
@@ -66,15 +76,18 @@ public class Crystal_ball extends Activity {
         currentAcceleration = SensorManager.GRAVITY_EARTH;
         previousAcceleration = SensorManager.GRAVITY_EARTH;
 
+        previousTime = System.currentTimeMillis();
+        currentTime = System.currentTimeMillis();
+        delay = 5000;
+
         ActionBar actionBar = getActionBar();
         actionBar.hide();
     }
 
     @Override
     protected void onResume() {
-        int delay = 5;
         super.onResume();
-        sensorManager.registerListener(sensorListener, accelerometer, delay);
+        sensorManager.registerListener(sensorListener, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
